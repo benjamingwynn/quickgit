@@ -1,0 +1,9 @@
+if [ "$1" = "" ]
+then
+	echo Incorrect usage.
+	exit
+else
+	git pull $1 +$2
+	git rebase --interactive HEAD~20
+	git push $1 +$2
+fi

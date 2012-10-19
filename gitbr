@@ -1,0 +1,39 @@
+remote=$2
+branch1=$3
+branch2=$4
+
+if [ "$1" = 1 ]
+then
+git pull $remote $branch1
+git checkout -b $branch1
+git branch -m $branch1 $branch2
+git push $remote $branch2
+echo ""
+echo "Renamed Github branch! Please go into the branch admin, and change the default branch to $branch2"
+exit
+fi
+
+if [ "$1" = 2 ]
+then
+git checkout $branch2
+git push $remote :$branch1
+exit
+fi
+
+echo "Didn't understand that, showing help..."
+echo ""
+echo ""
+echo "Quick Github renaming script - Version 1.1"
+echo "Coded by benjamingwynn"
+echo ""
+echo "Usage:"
+echo "       $ gitbr [STEP] [REMOTE] [CURRENT BRANCH NAME] [NEW BRANCH NAME]"
+echo ""
+echo "Steps:"
+echo "       Step 1: Step one will download and rename the current branch"
+echo "       Step 2: Step two will remove the other branch."
+echo ""
+echo "These steps are seperated because GitHub does not, by default, change"
+echo "the default branch if it is deleted, so Git can not preform the"
+echo "branch remove command without the default branch being changed first"
+echo "via the GitHub web interface."

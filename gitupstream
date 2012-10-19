@@ -1,0 +1,29 @@
+if [ "$1" = ""] || [ "$2" = "" ] || [ "$3" = "" ] || [ "$4" = "" ]; then
+	echo "Didn't understand that, showing help..."
+	echo ""
+	echo ""
+	echo "Quick Git upstream merge script - Version 0.1"
+	echo "Coded by benjamingwynn"
+	echo ""
+	echo "Usage:"
+	echo "       $ gitupstream [UPSTREAM REMOTE] [UPSTREAM BRANCH] [REPO REMOTE] [REPO BRANCH] [FLAGS]"
+	echo "Flags:"
+	echo "       -f	    force merge"
+	echo ""
+	exit
+fi
+
+usremote=$1
+usbranch=$2
+myremote=$3
+mybranch=$4
+
+git fetch --all
+if [ "$5" = "-f" ]; then
+	git merge $usremote/$usbranch
+else
+	git merge --ff-only $usremote/$usbranch
+fi
+git add .
+git commit -a -m 'Merging from $usremote (gitupstream.sh)'
+git push $myremote +$mybranch

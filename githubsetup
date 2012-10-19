@@ -1,0 +1,27 @@
+if [ "$1" = "" ]; then
+	echo "GitHubSetup - Sets up Git repos, GitHub only."
+	echo ""
+	echo "githubsetup [username/organisation name] [repo name]"
+	echo ""
+	echo ""
+	echo "IMPORTANT:"
+	echo "          - GitHubSetup only supports SSH Github remotes."
+	echo "          - GitHubSetup will automatically use 'origin' as the default remote."
+	echo ""
+	echo ""
+	exit
+fi
+echo "* Ensuring a Git repo doesn't exist..."
+if [ -d ".git" ]; then
+	echo "* FATAL: Can not setup here - .git found"
+	exit
+else
+	echo "* Not found, continuing..."
+fi
+echo "* Setting up Git here"
+git init
+echo "* Adding remote"
+git remote add origin git@github.com:$1/$2.git
+echo "* Pulling everything from origin"
+git pull origin
+echo "* GitHubSetup finished!"

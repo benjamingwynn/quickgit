@@ -1,0 +1,31 @@
+if [ "$1" = "" ]
+then
+	echo "GitNuke - Totally nukes and redownloads the repo."
+	echo ""
+	echo "gitnuke [username/organisation name] [repo name]"
+	echo ""
+	echo ""
+	echo "IMPORTANT:"
+	echo "          - GitNuke only supports GitHub remotes."
+	echo "          - GitNuke will automatically use origin as the default remote."
+	echo ""
+	echo ""
+	exit
+fi
+echo "* Ensuring a Git repo exists first..."
+if [ -d ".git" ]
+then
+	echo "* It does, Let us continue."
+else
+	echo "* FATAL: Can not nuke here. No .git found"
+	exit
+fi
+echo "* Dropping the bomb."
+rm -rf *
+rm -rf .git
+rm .gitignore
+echo "* Boom."
+echo "* Clearing radiation"
+echo "* Running GitHubSetup"
+"githubsetup" "$1" "$2"
+echo "* GitNuke finished!"

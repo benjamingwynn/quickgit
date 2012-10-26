@@ -1,4 +1,4 @@
-if [ "$1" = ""] || [ "$2" = "" ] || [ "$3" = "" ] || [ "$4" = "" ]; then
+if [ "$1" = ""] || [ "$2" = "" ]; then
 	echo "Didn't understand that, showing help..."
 	echo ""
 	echo ""
@@ -6,24 +6,27 @@ if [ "$1" = ""] || [ "$2" = "" ] || [ "$3" = "" ] || [ "$4" = "" ]; then
 	echo "Coded by benjamingwynn"
 	echo ""
 	echo "Usage:"
-	echo "       $ gitupstream [UPSTREAM REMOTE] [UPSTREAM BRANCH] [REPO REMOTE] [REPO BRANCH] [FLAGS]"
+	echo "       $ gitupstream [UPSTREAM REMOTE] [UPSTREAM BRANCH] (REPO REMOTE) (REPO BRANCH) (FLAGS)"
 	echo "Flags:"
 	echo "       -f	    force merge"
 	echo ""
 	exit
 fi
 
-usremote=$1
-usbranch=$2
-myremote=$3
-mybranch=$4
-
 git fetch --all
-if [ "$5" = "-f" ]; then
-	git merge $usremote/$usbranch
+
+if [ "$3" = "-f" ] || [ "$4" = "-f" ] || [ "$5" = "-f" ]; then
+	echo "* Force merging"
+	git merge $1/$2
 else
-	git merge --ff-only $usremote/$usbranch
+	git merge --ff-only $1/$2
 fi
+
 git add .
-git commit -a -m 'Merging from $usremote (gitupstream.sh)'
-git push $myremote +$mybranch
+git commit -a -m 'Merging from $1 (gitupstream.sh)'
+
+if [ "$4" = "" ]; then
+	echo "* Can't push. No upstream branch remote given."
+else
+	git push $3 +$4
+fi

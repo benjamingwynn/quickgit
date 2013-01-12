@@ -1,27 +1,40 @@
-qginfo
-echo "$qgname $qgver"
-echo "	A simple bash complication of useful Git related commands."
+# Get version information
+export qgname=QuickGit
+export qgver=0.3
+
+echo $qgname $qgver
 echo ""
+
+# Display Changelog
+if [ "$1" = "changelog" ]; then
+cat ~/quickgit/CHANGELOG.txt
+exit
+fi
+
+# Display Commands
+if [ "$1" = "commands" ]; then
 echo "Avaliable commands are:"
 echo ""
 echo "	gitbr		Rename GitHub branches"
+echo "	gget		Cleaner clone for Git repos"
+echo "	ghget		Cleaner for GitHub repos"
 echo "	githistory	Show an editable version of commit history"
 echo "	githubsetup	Set up a GitHub repo in a folder"
 echo "	gitnuke		Nuke the local repo (see help)"
 echo "	gitsync		Quickly sync repos"
 echo "	gitupstream	Merge changes easilly"
+echo "	rmbranch	Remove branches"
 echo ""
-echo "Changelog 0.2"
+exit
+fi
+
+echo "  A simple bash complication of useful Git related commands."
+echo "  Originally developed by Benjamin Gwynn:"
+echo "  * https://github.com/benjamingwynn/quickgit"
 echo ""
-echo "	* Added qginfo"
-echo "  * Added quickgit command"
-echo "	* Updated GitHubSetup"
-echo "		* -m option"
-echo "		* branch flag"
-echo "		* gitsync on create"
-echo "		* fixed not checking out"
-echo "	* Updated GitUpstream"
-echo "		* repo remote and repo branch now optional"
-echo "		* removed usbranch and usremote"
-echo "		* removed mybranch and myremote"
-echo "		
+echo " * quickgit commands"
+echo "            View all usable commands"
+echo ""
+echo " * quickgit changelog"
+echo "            View the full application changelog"
+echo ""

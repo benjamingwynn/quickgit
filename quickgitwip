@@ -1,0 +1,50 @@
+# wip - do not use
+
+mkdir -p ~/.quickgit
+sudo touch ~/.quickgit/superpowers
+if [ -d ~/.quickgit/superpowers ]; then
+		echo "* Granted SU permissions. *highfive*"
+		rm ~/.quickgit
+else
+		echo "* Please re-launch the application as with SU permissions."
+		echo ""
+		exit
+fi
+
+mkdir -p ~/quickgit
+cp * ~/quickgit
+chmod a+X ~/quickgit/*
+
+echo "* Installing builder..."
+echo "# Quickgit automatic path configuration" >> ~/.bashrc
+echo "PATH=${PATH}:~/quickgit" >> ~/.bashrc
+
+
+if [ "su" = "true" ]; then
+	export su_box="X"
+else
+	export su_box=" "
+fi
+if [ "github" = "true" ]; then
+	export github_box="X"
+else
+	export github_box=" "
+fi
+if [ "ssh" = "true" ]; then
+	export ssh_box="X"
+else
+	export ssh_box=" "
+fi
+
+echo "Q-U-I-C-K-G-I-T" #versionid
+echo ""
+echo "" #bin
+echo "" #description
+echo ""
+echo "" #command #arguments
+echo ""
+echo "" #special
+echo ""
+# checkbox
+echo "     [ $github_box ]      [ $ssh_box ]       [ $su_box ] "
+echo "  GitHub only  SSH Only  SU Required"

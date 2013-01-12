@@ -1,0 +1,35 @@
+Changelog 0.3
+
+	* Added rmbranch
+	* Added ghget
+	* Added gget
+	* Added a WIP file (not for use yet)
+	* Updated GitHubSetup
+		* Automatic information fetching added.
+		* General bug fixes and improvments.
+		* Removed automatic gitsync.
+	* Updated quickgit command
+		* Added option to show changelog or commands sepeartly.
+		* Add original GitHub link.
+		* Moved the changelog to an external file.
+	* Deprecated qginfo
+		* Compatibily added for outdated scripts.
+
+Changelog 0.2
+
+ 	* Added qginfo
+	* Added quickgit command
+	* Updated GitHubSetup
+		* -m option
+ 		* branch flag
+ 		* gitsync on create
+ 		* fixed not checking out
+ 	* Updated GitUpstream
+ 		* repo remote and repo branch now optional
+ 		* removed usbranch and usremote
+ 		* removed mybranch and myremote
+
+Changelog 0.1
+
+	* Init
+

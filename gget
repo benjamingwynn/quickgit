@@ -1,0 +1,14 @@
+if [ "$1" = "" ]; then
+	echo "gget - A cleaner clone."
+	echo ""
+	echo "gget [repo url]"
+	echo ""
+	exit
+fi
+
+echo "* Cloning..."
+git clone $1
+echo "* Removing unwanted files..."
+cd $2
+rm -rf -R .git
+cd ..

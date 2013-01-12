@@ -1,2 +1,11 @@
-qg=QuickGit
-qgver=0.2
+echo "*** WARNING!"
+echo "*** As of version 0.3, gqinfo is deprecated."
+echo "*** Please remove qginfo from your script."
+echo ""
+echo "** Exporting *OUTDATED* quickgit information!"
+
+export qgname=QuickGit
+export qgver=0.2
+export qname=QuickGit
+export qver=0.2
+export quickgit=QuickGit

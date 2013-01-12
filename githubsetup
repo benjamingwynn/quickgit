@@ -1,7 +1,7 @@
 if [ "$1" = "" ] | [ "$2" = "" ] | [ "$3" = "" ] ; then
 	echo "GitHubSetup - Sets up Git repos, GitHub only."
 	echo ""
-	echo "githubsetup [username/organisation name] [repo name] [branch]"
+	echo "githubsetup [username/organisation name] [repo name] [branch] <flags>"
 	echo ""
 	echo ""
 	echo "IMPORTANT:"
@@ -12,6 +12,13 @@ if [ "$1" = "" ] | [ "$2" = "" ] | [ "$3" = "" ] ; then
 	echo "		-m	Make the repo in a new folder"
 	echo ""
 	exit
+fi
+
+if [ "$1" = "-m" ] | [ "$2" = "-m" ] | [ "$3" = "-m" ] ; then
+echo ""
+echo "USAGE: $ githubsetup [username/organisation name] [repo name] [branch] <flags>"
+echo ""
+exit
 fi
 
 if [ "$4" = "-m" ]; then
@@ -32,6 +39,9 @@ echo "* Setting up Git here"
 git init
 echo "* Adding remote"
 git remote add origin git@github.com:$1/$2.git
-echo "* Gitsyncing"
-gitsync origin $3
-echo "* GitHubSetup finished!"
+echo "* Fetching info"
+git fetch --all
+echo "* Selecting branch"
+git checkout -b $3
+echo "* Pulling selected branch"
+git pull origin $3

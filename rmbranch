@@ -1,0 +1,31 @@
+if [ "$1" = "" ]; then
+	echo "rmbranch - Quickly remove a branch."
+	echo ""
+	echo "rmbranch [branch] <remote>"
+	echo ""
+	echo ""
+	echo "IMPORTANT:"
+	echo "          - If no remote is given, rmbranch will target 'origin' automatically."
+	exit
+fi
+
+echo "* Looking for .git"
+
+if [ -d ".git" ]; then
+	echo "* Git repo found..."
+else
+	echo "* No git repo exists here, cannot continue."
+	exit
+fi
+
+if [ "$2" = "" ]; then
+	echo "* No remote given, using 'origin'"
+	rmbranchrepo=origin
+else
+	echo "* Using $2"
+	rmbranchrepo=$2
+fi
+
+# Remove branch
+echo "* Removing branch"
+git push $rmbranchrepo :$1
